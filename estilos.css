@@ -1,0 +1,53 @@
+/* Fondo negro para toda la barra */
+.navbar {
+  background-color: #000000 !important;
+}
+
+/* Texto neón rosa con animación pulsante */
+.disco-neon {
+  color: #ff4ff6;
+  text-shadow: 0 0 5px #ff4ff6,
+               0 0 10px #ff66cc,
+               0 0 20px #ff99ff,
+               0 0 30px #ff66cc;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: pulseNeon 1.5s infinite;
+}
+
+/* Enlaces del navbar en color blanco */
+.navbar .nav-link {
+  color: white !important;
+}
+
+/* Efecto al pasar el mouse por los botones de navegación */
+.navbar .nav-link:hover {
+  color: #ff4ff6 !important;
+}
+
+/* Animación para que el texto "brille" como un letrero neón */
+@keyframes pulseNeon {
+  0%, 100% {
+    text-shadow: 0 0 5px #ff4ff6,
+                 0 0 10px #ff66cc,
+                 0 0 20px #ff99ff;
+  }
+  50% {
+    text-shadow: 0 0 20px #ff4ff6,
+                 0 0 30px #ff66cc,
+                 0 0 40px #ff99ff;
+  }
+}
+
+/* Asegura que el contenedor no tenga restricciones */
+.banner {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Hace que la imagen se ajuste al ancho y mantenga proporciones */
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
