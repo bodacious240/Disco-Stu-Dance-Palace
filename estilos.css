@@ -1,9 +1,34 @@
-
+/* 
 body {
   background-color: #1b1b1b;
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+} */
+
+body {
+  background-color: #111; 
+  color: #fff; 
+}
+
+.card {
+  background-color: #1c1c1c; 
+  color: #fff; 
+  border: none; 
+  transition: 0.3s ease;
+}
+
+a {
+  cursor: pointer;
+}
+
+.card:hover {transform: scale(1.02); 
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15); 
+}
+
+.reaction-btn {
+  cursor: pointer; 
+  margin-right: 10px; 
 }
 
 /* estilos index.html */
