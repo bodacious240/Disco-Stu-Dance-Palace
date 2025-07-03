@@ -123,6 +123,14 @@ img {
   margin: 40px 0 20px 0;
 }
 
+.event-img {
+  padding-top: 1.2em;
+}
+
+.promo-img {
+  padding-top: 0.5em;
+}
+
 .tarjetas {
   display: flex;
   justify-content: center;
