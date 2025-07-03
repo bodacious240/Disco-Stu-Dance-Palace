@@ -24,35 +24,49 @@ $(document).ready(function(){
 
 //comentarios local storage
 
-// Cargar comentarios existentes al cargar la página
-window.addEventListener("DOMContentLoaded", () => {
-  cargarComentarios(1); // Repite con ID 2, 3, etc. si tienes más tarjetas
-});
+// Mostrar u ocultar los comentarios de una tarjeta
+function toggleComentarios(id) {
+  const zona = document.getElementById(`zonaComentarios-${id}`);
+  const visible = zona.style.display === "block";
+  zona.style.display = visible ? "none" : "block";
+}
 
+// Guardar comentario y actualizar contador y vista
 function guardarComentario(id) {
   const textarea = document.getElementById(`comentarioInput-${id}`);
   const comentario = textarea.value.trim();
   if (comentario === "") return;
 
-  // Obtener comentarios previos
   const clave = `comentarios-${id}`;
   const comentarios = JSON.parse(localStorage.getItem(clave)) || [];
 
-  // Agregar nuevo comentario
   comentarios.push(comentario);
   localStorage.setItem(clave, JSON.stringify(comentarios));
 
-  textarea.value = ""; // Limpiar textarea
-  cargarComentarios(id); // Recargar comentarios
+  textarea.value = "";
+  cargarComentarios(id);
 }
 
+// Cargar comentarios desde localStorage y actualizar contador
 function cargarComentarios(id) {
   const contenedor = document.getElementById(`comentariosGuardados-${id}`);
   const comentarios = JSON.parse(localStorage.getItem(`comentarios-${id}`)) || [];
 
-  contenedor.innerHTML = comentarios.map(c => `
+  contenedor.innerHTML = comentarios.map(coment => `
     <div class="border rounded p-2 mb-2 bg-light">
-      ${c}
+      ${coment}
     </div>
   `).join("");
+
+  const contador = document.getElementById(`contador-${id}`);
+  if (contador) contador.textContent = comentarios.length;
 }
+
+// Cargar todos los comentarios al iniciar la página
+window.addEventListener("DOMContentLoaded", () => {
+  const tarjetas = document.querySelectorAll("[id^='comentarioInput-']");
+  tarjetas.forEach(textarea => {
+    const id = textarea.id.split("-")[1];
+    cargarComentarios(id);
+  });
+});
