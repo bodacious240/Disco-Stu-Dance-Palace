@@ -146,6 +146,7 @@ img {
   color: white;
   box-shadow: 0 0 10px #ff4ff6;
   text-align: center;
+  
 }
 
 .card img {
@@ -265,4 +266,23 @@ form button {
 
 form button:hover {
   background-color: #d936b0;
+}
+
+h2{
+  animation: pulseNeon 1.5s infinite;
+}
+.textarea-dark {
+  background-color: #a07ea7; /* gris oscuro */
+  color: #fff;
+  border-color: #6c757d;
+}
+.btn-publicar {
+  background-color: #7a1b72;   /* Cambia este valor por el color que quieras */
+  color: rgb(8, 0, 0);
+  border: none;
+
+}
+
+.btn-publicar:hover {
+  background-color: #ff0000;
 }
