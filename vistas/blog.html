@@ -1,53 +1,75 @@
-<!-- Tarjetas de artículos -->
-  <section class="container py-5">
-    <h2 class="text-center mb-4">📝 Últimos Artículos</h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+<section class="container py-5">
+  <h2 class="text-center mb-4">📝 Últimos Artículos</h2>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
-      <!-- Tarjeta ejemplo -->
-      <div class="col">
-        <div class="card h-100">
-          <img src="imagenes/DJ_Z_as_a_Simpsons_c-removebg-preview.png" class="card-img-top" alt="Artículo 1">
-          <div class="card-body">
-            <h5 class="card-title">🔥 Entrevista con DJ Zeta 🔥</h5>
-            <p class="card-text">Conoce el enfoque único de DJ Zeta para mezclar cumbia electrónica con house europeo.</p>
-          </div>
-          <div class="card-footer bg-transparent border-top-0">
-            <span class="reaction-btn text-warning">🔥 Me encantó (<span id="vote1">21</span>)</span>
-            <span class="reaction-btn text-info">💃 El más bailado (<span id="vote2">13</span>)</span>
+    <!-- Tarjeta 1 -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="imagenes/DJ_Z_as_a_Simpsons_c-removebg-preview.png" class="card-img-top" alt="DJ Zeta">
+        <div class="card-body">
+          <h5 class="card-title">🔥 Entrevista con DJ Zeta 🔥</h5>
+          <p class="card-text">Conoce el enfoque único de DJ Zeta para mezclar cumbia electrónica con house europeo.</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0">
+          <span class="reaction-btn text-warning">🔥 Me encantó (<span id="vote1">21</span>)</span>
+          <span class="reaction-btn text-info">💃 El más bailado (<span id="vote2">13</span>)</span>
+        </div>
+        <div class="p-3 pt-0">
+          <button class="btn btn-sm btn-toggle-comentarios" onclick="toggleComentarios(1)">💬 Comentarios (<span id="contador-1">0</span>)</button>
+          <div id="zonaComentarios-1" class="mt-3" style="display: none;">
+            <textarea class="form-control mb-2 textarea-dark" id="comentarioInput-1" rows="2" placeholder="Escribe tu comentario..."></textarea>
+            <button class="btn btn-sm btn-primary" onclick="guardarComentario(1)">Publicar</button>
+            <div id="comentariosGuardados-1" class="mt-3"></div>
           </div>
         </div>
       </div>
-
-      <!-- Duplica más tarjetas aquí -->
-      
-      <!-- Tarjeta ejemplo -->
-      <div class="col">
-        <div class="card h-100">
-          <img src="imagenes/abejorro.png" class="card-img-top" alt="Artículo 1" width="418px" height="418px">
-          <div class="card-body">
-            <h5 class="card-title">🔥 Hombre abejorro la rompe con sus pasos 🔥</h5>
-            <p class="card-text">BZZZZZZZ hizo la pista de baile al sentir el fuego de los pies del Hombre Abejorro en la Fiesta de la Miel!</p>
-          </div>
-          <div class="card-footer bg-transparent border-top-0">
-            <span class="reaction-btn text-warning">🔥 Me encantó (<span id="vote1">21</span>)</span>
-            <span class="reaction-btn text-info">💃 El más bailado (<span id="vote2">13</span>)</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tarjeta ejemplo -->
-      <!-- <div class="col">
-        <div class="card h-100">
-          <img src="https://source.unsplash.com/400x250/?dj,dance" class="card-img-top" alt="Artículo 1">
-          <div class="card-body">
-            <h5 class="card-title">🔥 Entrevista con DJ Zeta</h5>
-            <p class="card-text">Conoce el enfoque único de DJ Zeta para mezclar cumbia electrónica con house europeo.</p>
-          </div>
-          <div class="card-footer bg-transparent border-top-0">
-            <span class="reaction-btn text-warning">🔥 Me encantó (<span id="vote1">21</span>)</span>
-            <span class="reaction-btn text-info">💃 El más bailado (<span id="vote2">13</span>)</span>
-          </div>
-        </div>
-      </div> -->
-      
     </div>
+
+    <!-- Tarjeta 2 -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="imagenes/abejorro.png" class="card-img-top" alt="Hombre Abejorro" width="418" height="418">
+        <div class="card-body">
+          <h5 class="card-title">🔥 Hombre abejorro la rompe con sus pasos 🔥</h5>
+          <p class="card-text">BZZZZZZZ hizo la pista de baile al sentir el fuego de los pies del Hombre Abejorro en la Fiesta de la Miel!</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0">
+          <span class="reaction-btn text-warning">🔥 Me encantó (<span id="vote1">21</span>)</span>
+          <span class="reaction-btn text-info">💃 El más bailado (<span id="vote2">13</span>)</span>
+        </div>
+        <div class="p-3 pt-0">
+          <button class="btn btn-sm btn-toggle-comentarios" onclick="toggleComentarios(2)">💬 Comentarios (<span id="contador-2">0</span>)</button>
+          <div id="zonaComentarios-2" class="mt-3" style="display: none;">
+            <textarea class="form-control mb-2 textarea-dark" id="comentarioInput-2" rows="2" placeholder="Escribe tu comentario..."></textarea>
+            <button class="btn btn-sm btn-primary" onclick="guardarComentario(2)">Publicar</button>
+            <div id="comentariosGuardados-2" class="mt-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta 3 -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="../imagenes/Un personaje origina.png" class="card-img-top" alt="Discoteca de los 80">
+        <div class="card-body">
+          <h5 class="card-title">🔥 Crítico de discos declara la disco con mayor groove de la ciudad</h5>
+          <p class="card-text">El legendario crítico musical Tito Groove anunció: “¡Esta disco no solo tiene ritmo, tiene alma!”</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0">
+          <span class="reaction-btn text-warning">🔥 Me encantó (<span id="vote1">21</span>)</span>
+          <span class="reaction-btn text-info">💃 El más bailado (<span id="vote2">13</span>)</span>
+        </div>
+        <div class="p-3 pt-0">
+          <button class="btn btn-sm btn-toggle-comentarios" onclick="toggleComentarios(3)">💬 Comentarios (<span id="contador-3">0</span>)</button>
+          <div id="zonaComentarios-3" class="mt-3" style="display: none;">
+            <textarea class="form-control mb-2 textarea-dark" id="comentarioInput-3" rows="2" placeholder="Escribe tu comentario..."></textarea>
+            <button class="btn btn-sm btn-primary" onclick="guardarComentario(3)">Publicar</button>
+            <div id="comentariosGuardados-3" class="mt-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

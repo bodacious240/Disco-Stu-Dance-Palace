@@ -151,6 +151,7 @@ img {
   color: white;
   box-shadow: 0 0 10px #ff4ff6;
   text-align: center;
+  
 }
 
 footer {
@@ -276,4 +277,51 @@ form button {
 
 form button:hover {
   background-color: #d936b0;
+}
+
+h2{
+  animation: pulseNeon 1.5s infinite;
+}
+.textarea-dark {
+  background-color: #a07ea7; /* gris oscuro */
+  color: #fff;
+  border-color: #6c757d;
+}
+.btn-publicar {
+  background-color: #7a1b72;   /* Cambia este valor por el color que quieras */
+  color: rgb(8, 0, 0);
+  border: none;
+
+}
+
+.btn-publicar:hover {
+  background-color: #ff0000;
+}
+
+/* Estilo para cada comentario guardado */
+#zonaComentarios-1 .border,
+#zonaComentarios-2 .border,
+#zonaComentarios-3 .border {
+  background-color: #aa8888;
+  color: #000000;
+  border:  solid #f707ff;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+/* Efecto al pasar el cursor por encima */
+#zonaComentarios-1 .border:hover,
+#zonaComentarios-2 .border:hover,
+#zonaComentarios-3 .border:hover {
+  transform: scale(1.02);
+}
+
+/* Para el área completa de comentarios */
+[id^="zonaComentarios-"] {
+  background-color: #4b3b4759;
+  padding: 10px;
+  border-radius: 12px;
+  border-left: 6px solid #ff00ea;
 }
