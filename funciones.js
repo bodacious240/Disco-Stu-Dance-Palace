@@ -10,9 +10,23 @@ document.querySelectorAll('.reaction-btn').forEach(btn => {
 showFilter = false;
 
 
-window.addEventListener('click',()=>{
-    document.getElementById("song").play()
-})
+const song = document.getElementById("song");
+let isMuted = false;
+
+window.addEventListener('click', () => {
+  song.play();
+});
+
+// Función para mutear/desmutear
+function toggleMute() {
+  isMuted = !isMuted;
+  song.muted = isMuted;
+}
+
+// Función para regular el volumen
+function setVolume(volumen) {
+  song.volume = volumen;
+}
 
 // esta es la función que llaman los botones del navbar en el index.html
 function cargarCont(e) {
