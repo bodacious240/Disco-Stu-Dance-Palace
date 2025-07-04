@@ -7,6 +7,9 @@ document.querySelectorAll('.reaction-btn').forEach(btn => {
 });
 });
 
+showFilter = false;
+
+
 window.addEventListener('click',()=>{
     document.getElementById("song").play()
 })
@@ -15,6 +18,16 @@ window.addEventListener('click',()=>{
 function cargarCont(e) {
   $('#contenido').load(e);
 };
+
+function toggleFilter() {
+  showFilter = !showFilter;
+  if (showFilter) {
+    $('.filt').show();
+  } else {
+    $('.filt').hide();
+  }
+  
+}
 
 // todo este codigo corre al abrir la pagina
 $(document).ready(function(){
