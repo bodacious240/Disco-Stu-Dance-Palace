@@ -14,38 +14,57 @@
     </audio>
 <body>
   <nav class="navbar navbar-expand-lg bg-dark text-white">
-  <div class="container-fluid">
-    <a class="navbar-brand disco-neon" onclick="cargarCont('vistas/inicio.html')">
-      Disco Stu's Dance Palace
-    </a>
+    <div class="container-fluid">
+      <a class="navbar-brand disco-neon" onclick="cargarCont('vistas/inicio.html')">
+        Disco Stu's Dance Palace
+      </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active" onclick="cargarCont('vistas/inicio.html')">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" onclick="cargarCont('vistas/eventos.html')">Eventos</a></li>
-        <li class="nav-item"><a class="nav-link" onclick="cargarCont('vistas/galeria.html')">Galería</a></li>
-        <li class="nav-item"><a class="nav-link" onclick="cargarCont('vistas/blog.html')">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" onclick="cargarCont('vistas/contacto.html')">Contacto</a></li>
-      </ul>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" onclick="cargarCont('vistas/inicio.html')">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="cargarCont('vistas/eventos.html')">Eventos</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="cargarCont('vistas/galeria.html')">Galería</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="cargarCont('vistas/blog.html')">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="cargarCont('vistas/contacto.html')">Contacto</a></li>
 
-      <!-- 🎵 Controles de música -->
-      <div class="d-flex align-items-center ms-3">
-        <button class="btn btn-outline-light me-2" onclick="toggleMute()">🔇</button>
-        <input type="range" min="0" max="1" step="0.01" value="1" onchange="setVolume(this.value)">
+          <!-- 🔐 Botones de login -->
+          <li class="nav-item"><a class="nav-link" onclick="cargarCont('vistas/login.html')">Sign In</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="cargarCont('vistas/register.html')">Sign Up</a></li>
+        </ul>
+
+        <!-- 🎵 Controles de música -->
+        <!-- 🎵 Controles de música -->
+        <div class="d-flex align-items-center ms-3">
+          <button class="btn btn-outline-light me-2" onclick="toggleMute()">🔇</button>
+          <input type="range" min="0" max="1" step="0.01" value="1" onchange="setVolume(this.value)">
+        </div>
+
+        <!-- 👤 Usuario logueado -->
+        <div id="user-info" class="user-box ms-3 text-light fw-bold">
+          <!-- Se llenará dinámicamente con JS -->
+        </div>
+
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
   <div id="contenido">
     <!-- Aquí va cargado todo -->
      Error
+  </div>
+
+  <div id="popupComentarios" class="popup-overlay" style="display: none;">
+    <div class="popup-box">
+      <button class="btn-close btn-sm" onclick="cerrarPopup()">✖</button>
+      <h5>💬 Comentarios</h5>
+      <div id="popupContenido"></div>
+    </div>
   </div>
 
 <footer>
