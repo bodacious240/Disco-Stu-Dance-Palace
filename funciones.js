@@ -23,6 +23,7 @@ $(document).on('change', '#filter', function() {
       break;
     case "dance":
       $('.bail').show();
+      $('.gal:not(.bail)').hide();
       break;
   }
 });
