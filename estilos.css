@@ -32,6 +32,20 @@ a {
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.65); 
 }
 
+.gal {
+  background-color: #1c1c1c; 
+  color: #fff; 
+  border: none; 
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px #ff4ff6;
+  padding: 0.5em;
+}
+
+.gal:hover {
+  transform: scale(1.02); 
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.65); 
+}
+
 .reaction-btn {
   cursor: pointer; 
   margin-right: 10px; 
@@ -371,4 +385,8 @@ h2{
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.9); }
   to { opacity: 1; transform: scale(1); }
+}
+
+#galeria {
+  justify-content: space-evenly;
 }

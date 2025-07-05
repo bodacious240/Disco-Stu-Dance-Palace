@@ -7,7 +7,25 @@ document.querySelectorAll('.reaction-btn').forEach(btn => {
 });
 });
 
-showFilter = false;
+// filtros de la galeria
+$(document).on('change', '#filter', function() {
+  switch ($('#filter').val()) {
+    case "all":
+      $('.gal').show();
+      break;
+    case "out":
+      $('.ext').show();
+      $('.int').hide();
+      break;
+    case "in":
+      $('.ext').hide();
+      $('.int').show();
+      break;
+    case "dance":
+      $('.bail').show();
+      break;
+  }
+});
 
 
 const song = document.getElementById("song");
@@ -33,15 +51,6 @@ function cargarCont(ruta) {
   $('#contenido').load(ruta, () => {
     cargarTodosLosComentarios(); // 🆕 actualiza contadores cada vez que se cargue una vista
   });
-}
-function toggleFilter() {
-  showFilter = !showFilter;
-  if (showFilter) {
-    $('.filt').show();
-  } else {
-    $('.filt').hide();
-  }
-  
 }
 
 // todo este codigo corre al abrir la pagina
