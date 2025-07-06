@@ -287,11 +287,25 @@ function actualizarNavbar() {
   const usuarioActivo = localStorage.getItem("usuarioActivo");
   const userInfo = document.getElementById("user-info");
 
-  if (usuarioActivo && userInfo) {
-    userInfo.innerHTML = `
-      🕺 ${usuarioActivo}
-      <button class="btn btn-sm btn-outline-light ms-2" onclick="logout()">Cerrar Sesion</button>
-    `;
+  // Mostrar o ocultar los botones de login/registro
+  const btnSignin = document.getElementById("btn-signin");
+  const btnSignup = document.getElementById("btn-signup");
+
+  if (usuarioActivo) {
+    if (userInfo) {
+      userInfo.innerHTML = `
+        🕺 ${usuarioActivo}
+        <button class="btn btn-sm btn-outline-light ms-2" onclick="logout()">Cerrar Sesión</button>
+      `;
+    }
+
+    if (btnSignin) btnSignin.style.display = "none";
+    if (btnSignup) btnSignup.style.display = "none";
+
+  } else {
+    if (userInfo) userInfo.innerHTML = "";
+    if (btnSignin) btnSignin.style.display = "block";
+    if (btnSignup) btnSignup.style.display = "block";
   }
 }
 
@@ -308,8 +322,11 @@ function verificarAcceso(callback) {
 
 function logout() {
   localStorage.removeItem("usuarioActivo");
-  document.getElementById("user-info").innerHTML = ""; // 👈 limpiar visualmente
+  document.getElementById("user-info").innerHTML = "";
   cargarCont("vistas/inicio.html");
+  
+  // 🔁 Asegura que se actualice el navbar después de recargar
+  setTimeout(actualizarNavbar, 300); // puedes ajustar el tiempo si lo necesitas
   alert("Has cerrado sesión.");
 }
 
