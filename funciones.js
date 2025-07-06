@@ -46,13 +46,14 @@ function timer () {
     $("#minutes").text(minutes);
     $("#seconds").text(seconds);
 
-
     if(distance < 0){
         $("#days").text("00");
         $("#hours").text("00");
         $("#minutes").text("00");
         $("#seconds").text("00");
     }
+
+    setInterval(timer, 1000);
 };
 
 
@@ -107,7 +108,7 @@ $(document).on('click', '.btn-comentarios', function () {
 // todo este codigo corre al abrir la pagina
 $(document).ready(function(){
   cargarCont("vistas/inicio.html");
-  setInterval(timer, 1000);
+  timer();
 });
 
 
