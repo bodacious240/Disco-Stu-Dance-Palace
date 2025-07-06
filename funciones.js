@@ -28,8 +28,36 @@ $(document).on('change', '#filter', function() {
   }
 });
 
+//cuenta regresiva
+
+const targetDate = new Date("July 13 2025 21:45:00").getTime();
+
+function timer () {
+    const currentDate = new Date().getTime();
+    const distance = targetDate - currentDate;
+
+    const days = Math.floor(distance / 1000 / 60 / 60 / 24);
+    const hours = Math.floor(distance / 1000 / 60 / 60) % 24;
+    const minutes = Math.floor(distance / 1000 / 60) % 60;
+    const seconds = Math.floor(distance / 1000) % 60;
+
+    $("#days").text(days);
+    $("#hours").text(hours);
+    $("#minutes").text(minutes);
+    $("#seconds").text(seconds);
+
+
+    if(distance < 0){
+        $("#days").text("00");
+        $("#hours").text("00");
+        $("#minutes").text("00");
+        $("#seconds").text("00");
+    }
+};
+
 
 const song = document.getElementById("song");
+song.volume = 0.15;
 let isMuted = false;
 
 window.addEventListener('click', () => {
@@ -79,6 +107,7 @@ $(document).on('click', '.btn-comentarios', function () {
 // todo este codigo corre al abrir la pagina
 $(document).ready(function(){
   cargarCont("vistas/inicio.html");
+  setInterval(timer, 1000);
 });
 
 
@@ -235,10 +264,6 @@ function actualizarReacciones() {
     contadorSpan.innerText = voto ? actual : actual; // puedes usar un sistema más avanzado para sumar votos globales
   }
 }
-
-
-
-
 
 //   registro y login 
 

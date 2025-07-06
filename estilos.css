@@ -39,6 +39,7 @@ a {
   transition: 0.3s ease;
   width: 80%;
   padding: 0.6em 0;
+  cursor: pointer;
 }
 
 .card-date {
@@ -163,7 +164,7 @@ img {
   top: 50%;
   right: 5%;
   transform: translateY(-50%);
-  color: #fff943;
+  color: #00ffff;
   font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: bold;
   text-shadow: 0 0 5px #fff943, 0 0 10px #fff943, 0 0 20px #ffd700;
