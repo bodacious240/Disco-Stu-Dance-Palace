@@ -323,6 +323,10 @@ h2{
 
 }
 
+.btn-comentarios {
+  color: white;
+}
+
 .btn-publicar:hover {
   background-color: #ff0000;
 }

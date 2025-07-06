@@ -272,7 +272,7 @@ function login(event) {
   const storedPass = localStorage.getItem("clave");
 
   if (user === storedUser && pass === storedPass) {
-    alert("¡Bienvenido, Disco Stu!");
+    alert("¡Bienvenido, " + user + "!");
     localStorage.setItem("usuarioActivo", user); // 🆕 Guarda el usuario activo
     cargarCont("vistas/inicio.html");
 
