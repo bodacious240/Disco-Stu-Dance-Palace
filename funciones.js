@@ -114,13 +114,13 @@ $(document).ready(function(){
 
 //comentarios local storage
 
-// 🔁 Variables globales para paginación en popup
+// variables globales para paginación en popup
 let paginaActual = 1;
 let comentariosPorPagina = 5;
 let comentariosTemporales = [];
 let popupIdActivo = null;
 
-// 👤 Mostrar ventana emergente de comentarios
+// mostrar ventana emergente de comentarios
 function mostrarPopupComentarios(id) {
   popupIdActivo = id;
   comentariosTemporales = JSON.parse(localStorage.getItem(`comentarios-${id}`)) || [];
@@ -128,7 +128,7 @@ function mostrarPopupComentarios(id) {
   renderizarPopupComentarios();
 }
 
-// 🪟 Renderizar contenido en el popup con paginación
+// renderizar contenido en el popup con paginación
 function renderizarPopupComentarios() {
   const inicio = (paginaActual - 1) * comentariosPorPagina;
   const fin = inicio + comentariosPorPagina;
@@ -158,13 +158,13 @@ function renderizarPopupComentarios() {
   document.getElementById("popupComentarios").style.display = "flex";
 }
 
-// 🔄 Cambiar página en el popup
+//cambiar página en el popup
 function cambiarPagina(direccion) {
   paginaActual += direccion;
   renderizarPopupComentarios();
 }
 
-// 📝 Guardar comentario desde popup
+// guardar comentario desde popup
 function guardarComentarioPopup(id) {
   const textarea = document.getElementById(`popupInput-${id}`);
   const comentario = textarea.value.trim();
@@ -200,14 +200,13 @@ function cargarVotosMeEncanto() {
   }
 }
 
-// ❌ Cerrar ventana de comentarios
+// Cerrar ventana de comentarios
 function cerrarPopup() {
   document.getElementById("popupComentarios").style.display = "none";
-  cargarTodosLosComentarios(); // 👈 AÑADE ESTO TAMBIÉN
+  cargarTodosLosComentarios(); 
 }
 
 function cargarTodosLosComentarios() {
-  // Itera por cada tarjeta (asumiendo 3 por ahora, puedes ajustarlo dinámicamente)
   for (let id = 1; id <= 3; id++) {
     const comentarios = JSON.parse(localStorage.getItem(`comentarios-${id}`)) || [];
     const contadorSpan = document.getElementById(`contador-${id}`);
@@ -242,11 +241,11 @@ function toggleMeEncanto(id) {
 
   localStorage.setItem(claveTotal, total.toString());
 
-  // 🟡 Actualiza el contador visual
+  // actualiza el contador visual
   const contadorSpan = document.getElementById(`vote${id}`);
   if (contadorSpan) contadorSpan.innerText = total;
 
-  // 🟡 Actualiza la clase visual del botón
+  // actualiza la clase visual del botón
   const btn = document.querySelector(`.btn-meEncanto[data-id="${id}"]`);
   if (btn) {
     btn.classList.toggle("btn-activo", !yaVoto);
@@ -274,19 +273,17 @@ function register(event) {
   const user = document.getElementById("register-user").value;
   const pass = document.getElementById("register-pass").value;
 
-  // 🛑 Validación: ¿el usuario ya existe?
+  // validacion si ya existe usuario
   if (localStorage.getItem("usuario") === user) {
     alert("Ese usuario ya está registrado.");
-    return; // Salimos de la función
+    return; 
   }
 
-  // ✅ Si no existe, lo registramos
+  // si no existe lo regista¿ra
   localStorage.setItem("usuario", user);
   localStorage.setItem("clave", pass);
   alert("Usuario registrado correctamente");
 
-  // Puedes redirigir al login si quieres:
-  // cargarCont('vistas/login.html');
 }
 
 function login(event) {
@@ -299,10 +296,10 @@ function login(event) {
 
   if (user === storedUser && pass === storedPass) {
     alert("¡Bienvenido, " + user + "!");
-    localStorage.setItem("usuarioActivo", user); // 🆕 Guarda el usuario activo
+    localStorage.setItem("usuarioActivo", user); //guarda el usuario activo
     cargarCont("vistas/inicio.html");
 
-    // Opcional: Espera breve antes de actualizar navbar si cargarCont reemplaza contenido
+
     setTimeout(actualizarNavbar, 500); 
   } else {
     alert("Usuario o contraseña incorrectos");
@@ -313,7 +310,7 @@ function actualizarNavbar() {
   const usuarioActivo = localStorage.getItem("usuarioActivo");
   const userInfo = document.getElementById("user-info");
 
-  // Mostrar o ocultar los botones de login/registro
+  // mostrar o ocultar los botones de login/registro
   const btnSignin = document.getElementById("btn-signin");
   const btnSignup = document.getElementById("btn-signup");
 
@@ -339,8 +336,6 @@ function verificarAcceso(callback) {
   const usuarioActivo = localStorage.getItem("usuarioActivo");
   if (!usuarioActivo) {
     alert("Debes iniciar sesión para usar esta función.");
-    // Si tienes una vista login podrías redirigir aquí:
-    // cargarCont("vistas/login.html");
     return;
   }
   if (typeof callback === "function") callback();
@@ -351,8 +346,7 @@ function logout() {
   document.getElementById("user-info").innerHTML = "";
   cargarCont("vistas/inicio.html");
   
-  // 🔁 Asegura que se actualice el navbar después de recargar
-  setTimeout(actualizarNavbar, 300); // puedes ajustar el tiempo si lo necesitas
+  setTimeout(actualizarNavbar, 300); 
   alert("Has cerrado sesión.");
 }
 
