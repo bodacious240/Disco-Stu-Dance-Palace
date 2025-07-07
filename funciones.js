@@ -126,6 +126,7 @@ $(document).on('click', '.btn-comentarios', function () {
 $(document).ready(function(){
   cargarCont("vistas/inicio.html");
   timer();
+  song.play();
 });
 
 
