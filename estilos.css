@@ -46,6 +46,15 @@ a {
   font-style: italic;
 }
 
+.modal-content {
+  background-color: #1c1c1c;
+  color: white;
+}
+
+.btn-rosa {
+  background-color: hotpink;
+}
+
 .card-l:hover {
   transform: scale(1.02); 
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.65); 
@@ -187,6 +196,21 @@ img {
 
 .promo-img {
   padding-top: 0.5em;
+}
+
+.btn-reserva {
+  outline-color: #ff69b4;
+  outline-width: 3px;
+  background-color: rgba(0, 0, 0, 0);
+  transition: 0.01s;
+  color: white;
+  transform: scale(1.2);
+}
+
+.btn-reserva:hover {
+  transform: scale(1.4);
+  background-color: #ff69b4;
+  outline-color: rgba(0, 0, 0, 0);
 }
 
 .tarjetas {

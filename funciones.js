@@ -30,9 +30,23 @@ $(document).on('change', '#filter', function() {
 
 //cuenta regresiva
 
-const targetDate = new Date("July 13 2025 21:45:00").getTime();
+
 
 function timer () {
+    switch($(".countdown").attr('id')) {
+      case "cdEvent1":
+        var targetDate = new Date("July 13 2025 21:45:00").getTime();
+        break;
+      case "cdEvent2":
+        var targetDate = new Date("July 20 2025 22:30:00").getTime();
+        break;
+      case "cdEvent3":
+        var targetDate = new Date("July 27 2025 21:25:00").getTime();
+        break;
+      default:
+        console.log("oopsi");
+    }
+
     const currentDate = new Date().getTime();
     const distance = targetDate - currentDate;
 
@@ -56,6 +70,9 @@ function timer () {
     setInterval(timer, 1000);
 };
 
+function reservar() {
+  alert("Reserva creada para " + $("#nombres").val());
+};
 
 const song = document.getElementById("song");
 song.volume = 0.15;
