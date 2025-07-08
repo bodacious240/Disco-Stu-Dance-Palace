@@ -70,9 +70,53 @@ function timer () {
     setInterval(timer, 1000);
 };
 
+
+const usuario = localStorage.getItem("usuarioActivo");
+
 function reservar() {
-  alert("Reserva creada para " + $("#nombres").val());
-};
+  const usuario = localStorage.getItem("usuarioActivo");
+  if (!usuario) {
+    alert("Debes iniciar sesión para reservar.");
+    return false;
+  }
+
+  const nombre = document.getElementById("nombres").value.trim();
+  const apellido = document.getElementById("apellidos").value.trim();
+  const correo = document.getElementById("email").value.trim();
+  const fono = document.getElementById("fono").value.trim();
+
+  if (!nombre || !apellido || !correo || !fono) {
+    document.getElementById("alerta").classList.remove("d-none");
+    return false;
+  }
+
+  const nombreEvento = document.getElementById("tituloEvento")?.innerText || "Evento desconocido";
+  const fechaEvento = document.querySelector(".card-date")?.innerText.replace("Fecha: ", "") || "Fecha desconocida";
+  const eventoActual = `${nombreEvento} – ${fechaEvento}`;
+
+  const reserva = {
+    evento: eventoActual,
+    nombre,
+    apellido,
+    correo,
+    fono
+  };
+
+  // ✅ Diagnóstico visual en consola
+  console.log("Usuario activo:", usuario);
+  console.log("Reserva a guardar:", reserva);
+  console.log("Guardando en clave:", "reservas_" + usuario);
+
+  const clave = "reservas_" + usuario;
+  const reservasUsuario = JSON.parse(localStorage.getItem(clave)) || [];
+  reservasUsuario.push(reserva);
+  localStorage.setItem(clave, JSON.stringify(reservasUsuario));
+
+  alert("Reserva guardada correctamente.");
+  document.getElementById("formulario").reset();
+  document.getElementById("alerta").classList.add("d-none");
+  return true;
+}
 
 const song = document.getElementById("song");
 song.volume = 0.15;
@@ -98,7 +142,11 @@ function cargarCont(ruta) {
   $('#contenido').load(ruta, () => {
     cargarTodosLosComentarios();
     cargarVotosMeEncanto();
-    cargarVotosMeEncanto();
+
+    // Verifica si la ruta es de reservas y llama a la función
+    if (ruta.includes("reservas.html")) {
+      mostrarReservas();
+    }
   });
 }
 
@@ -328,9 +376,11 @@ function actualizarNavbar() {
   const usuarioActivo = localStorage.getItem("usuarioActivo");
   const userInfo = document.getElementById("user-info");
 
-  // mostrar o ocultar los botones de login/registro
   const btnSignin = document.getElementById("btn-signin");
   const btnSignup = document.getElementById("btn-signup");
+
+  // ⬇️ Botón de reservas dinámico
+  let reservasBtn = document.getElementById("btn-reservas");
 
   if (usuarioActivo) {
     if (userInfo) {
@@ -343,10 +393,23 @@ function actualizarNavbar() {
     if (btnSignin) btnSignin.style.display = "none";
     if (btnSignup) btnSignup.style.display = "none";
 
+    // Si no existe ya, lo crea
+    if (!reservasBtn) {
+      const navList = document.querySelector(".navbar-nav");
+      const newItem = document.createElement("li");
+      newItem.className = "nav-item";
+      newItem.id = "btn-reservas";
+      newItem.innerHTML = `<a class="nav-link" onclick="mostrarPopupHistorialReservas()">Mis reservas</a>`;
+      navList.appendChild(newItem);
+    }
+
   } else {
     if (userInfo) userInfo.innerHTML = "";
     if (btnSignin) btnSignin.style.display = "block";
     if (btnSignup) btnSignup.style.display = "block";
+
+    // Ocultar botón si no hay sesión
+    if (reservasBtn) reservasBtn.remove();
   }
 }
 
@@ -369,3 +432,98 @@ function logout() {
 }
 
 document.addEventListener("DOMContentLoaded", actualizarNavbar);
+
+
+
+// RESERVAS
+
+function guardarReserva(reserva) {
+  const usuario = localStorage.getItem("usuarioActivo");
+  if (!usuario) return;
+
+  // Obtener reservas existentes del usuario
+  let reservas = JSON.parse(localStorage.getItem("reservas_" + usuario)) || [];
+
+  // Agregar nueva reserva
+  reservas.push(reserva);
+
+  // Guardar actualizadas
+  localStorage.setItem("reservas_" + usuario, JSON.stringify(reservas));
+  alert("¡Reserva guardada correctamente!");
+}
+
+let paginaReserva = 1;
+const reservasPorPagina = 5;
+
+function mostrarPopupHistorialReservas() {
+  verificarAcceso(() => {
+    const usuario = localStorage.getItem("usuarioActivo");
+    const reservas = JSON.parse(localStorage.getItem("reservas_" + usuario)) || [];
+
+    const lista = document.getElementById("listaHistorialReservas");
+    const nav = document.getElementById("navegacionReservas");
+
+    if (!lista || !nav) return;
+
+    lista.innerHTML = "";
+    nav.innerHTML = "";
+
+    const totalPaginas = Math.ceil(reservas.length / reservasPorPagina);
+    const inicio = (paginaReserva - 1) * reservasPorPagina;
+    const fin = inicio + reservasPorPagina;
+    const reservasPagina = reservas.slice(inicio, fin);
+
+    if (reservasPagina.length === 0) {
+      const li = document.createElement("li");
+      li.className = "list-group-item text-muted";
+      li.textContent = "No tienes reservas registradas.";
+      lista.appendChild(li);
+    } else {
+      reservasPagina.forEach((r, i) => {
+        const li = document.createElement("li");
+        li.className = "list-group-item bg-dark text-light";
+        li.innerHTML = `
+          <strong>#${inicio + i + 1}</strong> – ${r.evento}<br>
+          👤 ${r.nombre} ${r.apellido}<br>
+          📧 ${r.correo} | 📞 ${r.fono}
+        `;
+        lista.appendChild(li);
+      });
+    }
+
+    // Navegación
+    const btnAnterior = document.createElement("button");
+    btnAnterior.className = "btn btn-sm btn-secondary";
+    btnAnterior.textContent = "⬅ Anterior";
+    btnAnterior.disabled = paginaReserva === 1;
+    btnAnterior.onclick = () => {
+      paginaReserva--;
+      mostrarPopupHistorialReservas();
+    };
+
+    const btnSiguiente = document.createElement("button");
+    btnSiguiente.className = "btn btn-sm btn-secondary";
+    btnSiguiente.textContent = "Siguiente ➡";
+    btnSiguiente.disabled = paginaReserva === totalPaginas || totalPaginas === 0;
+    btnSiguiente.onclick = () => {
+      paginaReserva++;
+      mostrarPopupHistorialReservas();
+    };
+
+    const texto = document.createElement("span");
+    texto.className = "text-light";
+    texto.textContent = `Página ${paginaReserva} de ${totalPaginas}`;
+
+    nav.appendChild(btnAnterior);
+    nav.appendChild(texto);
+    nav.appendChild(btnSiguiente);
+
+    document.getElementById("popupHistorialReservas").style.display = "flex";
+  });
+}
+
+function cerrarPopupHistorialReservas() {
+  paginaReserva = 1; // Reinicia al cerrar
+  document.getElementById("popupHistorialReservas").style.display = "none";
+}
+

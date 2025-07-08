@@ -1,0 +1,19 @@
+<div class="container">
+  <h3>Mis Reservas</h3>
+  <ul id="listaReservas" class="list-group mt-3"></ul>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const usuario = localStorage.getItem("usuarioActivo");
+    const reservas = JSON.parse(localStorage.getItem("reservas_" + usuario)) || [];
+    const lista = document.getElementById("listaReservas");
+
+    reservas.forEach((r, i) => {
+      const li = document.createElement("li");
+      li.className = "list-group-item";
+      li.textContent = `#${i + 1} – ${r}`;
+      lista.appendChild(li);
+    });
+  });
+</script>
